@@ -1,10 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
-mongoose.connect("mongodb://localhost:27017/yelp-camp", {
+mongoose.connect("mongodb://mongo:27017/yelp-camp", {
   useNewurlParser: true,
-  useCreateIndex: true,
-  useUnifiedTop: true,
 });
 
 const db = mongoose.connection;
@@ -22,6 +21,6 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.listen(3000, () => {
-  console.log("serving on port 3000");
+app.listen(process.env.APP_PORT, () => {
+  console.log(`serving on port ${process.env.APP_PORT}`);
 });
